@@ -7,7 +7,7 @@ import (
 	"log"
 	"os"
 	"os/exec"
-	"path"
+	"path/filepath"
 	"testing"
 )
 
@@ -75,15 +75,15 @@ func setupTestFiles(t *testing.T,
 
 	t.Logf("INFO: %s Current directory is %s", testname, currdir)
 
-	testfilesdir := path.Join(currdir, "testfiles")
+	testfilesdir := filepath.Join(currdir, "testfiles")
 	for _, testfile := range testfiles {
-		err := copyFile(path.Join(testfilesdir, testfile), path.Join(testdir, testfile))
+		err := copyFile(filepath.Join(testfilesdir, testfile), filepath.Join(testdir, testfile))
 		if err != nil {
 			t.Fatalf("ERROR: Failed to copy %s to test directory %s: err: %v", testfile, testdir, err)
 		}
 	}
 
-	fnTestBin := path.Join(testdir, "fn")
+	fnTestBin := filepath.Join(testdir, "fn.exe")
 	err := os.Chdir("../../")
 	if err != nil {
 		t.Fatalf("ERROR: Failed to cd ../../ directory: err: %v", err)
