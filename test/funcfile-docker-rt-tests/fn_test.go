@@ -112,7 +112,7 @@ func runFnInit(t *testing.T, testname, fnTestBin string) {
 
 func runFnBuild(t *testing.T, testname, fnTestBin string) {
 	t.Logf("INFO: %s Run fn build", testname)
-	res, err := exec.Command(fnTestBin, "build").CombinedOutput()
+	res, err := exec.Command(fnTestBin, "--verbose", "build").CombinedOutput()
 	if err != nil {
 		t.Fatalf("ERROR: Failed run fn build: res: %s, err: %v", string(res), err)
 	}
@@ -120,7 +120,7 @@ func runFnBuild(t *testing.T, testname, fnTestBin string) {
 
 func runFnBuildNoDockerfile(t *testing.T, testname, fnTestBin string) {
 	t.Logf("INFO: %s Run fn build", testname)
-	res, err := exec.Command(fnTestBin, "build").CombinedOutput()
+	res, err := exec.Command(fnTestBin, "--verbose", "build").CombinedOutput()
 	if err != nil {
 		if bytes.Contains(res, []byte("Dockerfile does not exist")) {
 			t.Logf("INFO: %s Got expected error message %s", testname, string(res))
