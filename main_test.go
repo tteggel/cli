@@ -16,7 +16,7 @@ var fnTestBin string
 
 // setup
 func init() {
-	fnTestBin = filepath.Join(os.TempDir(), "fn-test")
+	fnTestBin = filepath.Join(os.TempDir(), "fn-test.exe")
 	res, err := exec.Command("go", "build", "-o", fnTestBin).CombinedOutput()
 	fmt.Println(string(res))
 	if err != nil {
